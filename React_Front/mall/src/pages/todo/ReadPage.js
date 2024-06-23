@@ -7,7 +7,7 @@ import {
 
 const ReadPage = (props) => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { tno } = useParams();
   const [queryParams] = useSearchParams();
 
   // queryString 값 추출하는 방법 ?page=10&size=30 같은 형식을 추출
@@ -19,7 +19,7 @@ const ReadPage = (props) => {
 
   const moveToModify = () => {
     // search를 사용하게 되면 이전 페이지에서 사용했던 쿼리스트링을 그대로 사용하게 된다.
-    navigate({ pathname: `/todo/modify/${id}`, search: queryStr });
+    navigate({ pathname: `/todo/modify/${tno}`, search: queryStr });
   };
 
   const moveToList = () => {
@@ -28,7 +28,7 @@ const ReadPage = (props) => {
 
   return (
     <div className="text-3xl">
-      Read Page {id}
+      Read Page {tno}
       <div>
         <button onClick={moveToModify}>Test modify</button>
         <button onClick={moveToList}>Test List</button>

@@ -30,7 +30,7 @@ const todoRouter = () => {
       element: <Navigate replace={true} to={"list"} />,
     },
     {
-      path: "read/:id",
+      path: "read/:tno",
       element: (
         <Suspense fallback={Loading}>
           <TodoRead />
@@ -46,7 +46,7 @@ const todoRouter = () => {
       ),
     },
     {
-      path: "modify/:id",
+      path: "modify/:tno",
       element: (
         <Suspense fallback={Loading}>
           <TodoModify />

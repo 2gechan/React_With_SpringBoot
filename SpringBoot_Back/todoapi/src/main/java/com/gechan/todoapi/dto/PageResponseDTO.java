@@ -46,5 +46,7 @@ public class PageResponseDTO<E> {
         this.prevPage = prev ? start - 1 : 0;
 
         this.nextPage = next ? end + 1 : 0;
+
+        this.current = pageRequestDTO.getPage();
     }
 }

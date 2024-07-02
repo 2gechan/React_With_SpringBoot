@@ -40,3 +40,7 @@ public String print(LocalDate object, Locale locale) {
 
 ### @Data
 - Lombok 라이브러리에서 지원하는 어노테이션으로 @Getter/@Setter/@Tostring/@EqualsAndHashCode/@RequiredArgsContructor 를 합쳐놓은 어노테이션
+
+### @PathVariable
+- 경로 변수를 표시하기 위해 메서드에 매개변수를 사용
+- 경로 변수는 중괄호 {id}로 둘러싸인 값을 나타낸다.

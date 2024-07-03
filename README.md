@@ -1,9 +1,18 @@
-# React Wtih SpringBoot
+# React Wtih SpringBoot Todo Project
 
 ## 개발 환경
 - Front-End : React(VsCode)
 - Back-End : Spring-Boot(Intelli J)
 - DB : MariaDB
+
+## Library
+### Front-End
+- react-router-dom
+- axios
+
+### Back-End
+- Lombok
+- queryDSL
 
 ## 커리큘럼
 - 리액트(React) 개발 프로세스

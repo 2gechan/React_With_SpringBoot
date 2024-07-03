@@ -27,6 +27,7 @@ public class CustomServletConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .maxAge(500) // preflight 요청 캐싱하는 시간
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
-                .allowedOrigins("*"); // 모든 경로 허가
+                .allowedOrigins("*") // 모든 경로 허가
+                .allowedHeaders("Authorization", "Cache-Control", "Content-Type");
     }
 }

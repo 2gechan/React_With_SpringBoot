@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   createSearchParams,
   useNavigate,
@@ -13,6 +14,8 @@ const getNum = (param, defaultValue) => {
 
 const useCustomMove = () => {
   const navigate = useNavigate();
+
+  const [referesh, setRefresh] = useState(false);
 
   const [queryParams] = useSearchParams();
 
@@ -36,11 +39,15 @@ const useCustomMove = () => {
     } else {
       queryStr = queryDefault;
     }
+    setRefresh(!referesh);
 
     navigate({ pathname: `../list`, search: queryStr });
-
-    return { moveToList };
   };
+
+  const moveToModify = (num) => {
+    navigate({ pathname: `../modify/${num}`, search: queryDefault });
+  };
+  return { moveToList, moveToModify, page, size, referesh };
 };
 
 export default useCustomMove;

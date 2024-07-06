@@ -24,7 +24,7 @@ const makeDiv = (title, value) => (
 const ReadComponent = ({ tno }) => {
   const [todo, setTodo] = useState(initState);
 
-  const { moveToList } = useCustomMove();
+  const { moveToList, moveToModify } = useCustomMove();
   // tno가 바뀌지 않는다면 재조회 하지 않도록 설정
   useEffect(() => {
     getOne(tno).then((data) => {
@@ -49,6 +49,13 @@ const ReadComponent = ({ tno }) => {
           onClick={() => moveToList()}
         >
           List
+        </button>
+        <button
+          type="button"
+          className="rounded p-4 m-2 text-xl w-32 text-white bg-red-500"
+          onClick={() => moveToModify(todo.tno)}
+        >
+          Modify
         </button>
       </div>
     </div>

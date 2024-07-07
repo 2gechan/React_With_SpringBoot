@@ -6,7 +6,7 @@ const initState = {
   tno: 0,
   title: "",
   content: "",
-  dudate: "",
+  dueDate: "",
   complete: false,
 };
 
@@ -38,7 +38,7 @@ const ReadComponent = ({ tno }) => {
       {makeDiv("Tno", todo.tno)}
       {makeDiv("Title", todo.title)}
       {makeDiv("Content", todo.content)}
-      {makeDiv("Due Date", todo.dudate)}
+      {makeDiv("Due Date", todo.dueDate)}
       {makeDiv("Complete", todo.complete ? "Completed" : "Not Yet")}
 
       {/* buttons.........start */}

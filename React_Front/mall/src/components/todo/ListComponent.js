@@ -17,7 +17,7 @@ const initState = {
 };
 
 const ListComponent = () => {
-  const { page, size, moveToList, referesh } = useCustomMove();
+  const { page, size, moveToList, referesh, moveToRead } = useCustomMove();
   const [serverData, setServerData] = useState(initState);
 
   useEffect(() => {
@@ -34,6 +34,7 @@ const ListComponent = () => {
           <div
             key={todo.tno}
             className="w-full min-w-[400px] p-2 m-2 rounded shadow-md"
+            onClick={() => moveToRead(todo.tno)}
           >
             <div className="flex ">
               <div className="font-extrabold text-2xl p-2 w-1/12">

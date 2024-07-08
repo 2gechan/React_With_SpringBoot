@@ -47,9 +47,23 @@ public String print(LocalDate object, Locale locale) {
 ### @Builder(builderMethodName = "withAll")
 - 기본 메서드 명인 Builder() 대신 다른 이름으로 네이밍
 
+### @Builder.Default
+- 객체의 초기화
+
 ### @Data
 - Lombok 라이브러리에서 지원하는 어노테이션으로 @Getter/@Setter/@Tostring/@EqualsAndHashCode/@RequiredArgsContructor 를 합쳐놓은 어노테이션
 
 ### @PathVariable
 - 경로 변수를 표시하기 위해 메서드에 매개변수를 사용
 - 경로 변수는 중괄호 {id}로 둘러싸인 값을 나타낸다.
+
+### @PostConstruct
+- 의존성 주입이 이루어진 후 초기화를 수행하는 어노테이션
+- 생성자보다 늦게 호출 된다.
+1. 생성자 호출
+2. 의존성 주입 완료
+3. @PostConstruct
+
+
+### Axios Library
+- JSON.stringify(obj) => json 타입으로 변환이 필요 없다.

@@ -13,6 +13,7 @@
 ### Back-End
 - Lombok
 - queryDSL
+- thumbnailator:0.4.19
 
 ## 커리큘럼
 - 리액트(React) 개발 프로세스

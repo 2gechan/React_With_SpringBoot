@@ -68,3 +68,19 @@ public String print(LocalDate object, Locale locale) {
 
 ### Axios Library
 - JSON.stringify(obj) => json 타입으로 변환이 필요 없다.
+
+### 파일 업로드
+- 실제 저장할 경로 + 파일명 만들기 `Path savePath = Paths.get(uploadPath, saveName)`
+- 실제 파일을 읽어서 만든 경로 + 파일명으로 저장 `Files.copy(file.getInputStream(), savePath)`
+
+### File.separator
+- 운영체제에 맞는 디렉토리 구분자를 자동으로 삽입 `window : \\`, `Unix : /`
+
+### @Embeddable
+- 한 엔티티가 가지는 컬럼들 중 다른 하나의 객체로 묶을 수 있는 컬럼들을 묶어 객체지향적으로 설계할 수 있다.
+
+### @ElementCollection
+- JPA가 컬랙션 객체임을 알 수 있게 한다.
+- 컬렉션 객체는 관계형 데이터베이스에 저장할 수 없기 때문에 컬렉션을 저장하기 위해 별도의 테이블을 만들어 컬렉션을 저장해야 한다.
+- int, String, Integer 등과 같은 엔티티가 아닌 값 타입, 임베디드 타입에 대한 테이블을 생성하고 1대 다 관계로 다룬다.
+

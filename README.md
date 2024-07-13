@@ -84,3 +84,7 @@ public String print(LocalDate object, Locale locale) {
 - 컬렉션 객체는 관계형 데이터베이스에 저장할 수 없기 때문에 컬렉션을 저장하기 위해 별도의 테이블을 만들어 컬렉션을 저장해야 한다.
 - int, String, Integer 등과 같은 엔티티가 아닌 값 타입, 임베디드 타입에 대한 테이블을 생성하고 1대 다 관계로 다룬다.
 
+### @ElementCollection과 @Embeddable의 동작
+- @ElementCollection은 @Embeddable 타입의 객체 목록을 엔티티의 필드로 정의할 때 사용된다.
+- 이 어노테이션은 JPA에게 List, Set, Map과 같은 컬렉션을 매핑하기 위한 방법을 지시한다.
+

@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 import java.util.List;
 
-// queryDSL을 사용할 때 이름이 정확히 맞아야한다 Interface 이름 뒤에 Impl 필수
+// queryDSL을 사용할 때 이름이 정확히 맞아야 한다 Interface 이름 뒤에 Impl 필수
 // QuerydslRepositorySupport 상속 필요
 @Log4j2
 public class TodoSearchImpl extends QuerydslRepositorySupport implements TodoSearch {

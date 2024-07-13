@@ -43,6 +43,10 @@ public class Product {
         this.pdesc = desc;
     }
 
+    public void changeDel(boolean delFlag) {
+        this.delflag = delFlag;
+    }
+
     public void addImage(ProductImage image) {
         image.setOrd(imageList.size());
         imageList.add(image);

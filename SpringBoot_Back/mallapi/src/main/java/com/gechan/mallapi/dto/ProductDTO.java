@@ -25,9 +25,11 @@ public class ProductDTO {
 
     private boolean delFlag;
 
+    // 브라우저에서 등록하거나 수정하는 파일 목록
     @Builder.Default
     private List<MultipartFile> files = new ArrayList<>();
 
+    // DB에 들어 있는 파일명 목록
     @Builder.Default
     private List<String> uploadFileNames = new ArrayList<>();
 }

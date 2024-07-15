@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @Log4j2
@@ -75,5 +76,51 @@ public class ProductController {
     public ProductDTO read(@PathVariable("pno") Long pno) {
 
         return productService.get(pno);
+    }
+
+    @PutMapping("/{pno}")
+    public Map<String, String> modify(@PathVariable("pno") Long pno, ProductDTO productDTO) {
+
+        productDTO.setPno(pno);
+
+        // old product, 기존에 수정되기 전 저장되어 있는 정보
+        ProductDTO oldProductDTO = productService.get(pno);
+
+        // file upload, 신규 파일들
+        List<MultipartFile> files = productDTO.getFiles();
+        List<String> currentUploadFileNames = fileUtil.saveFiles(files);
+
+        // keep files, 유지할 파일들
+        List<String> uploadedFileNames = productDTO.getUploadFileNames();
+
+        if (currentUploadFileNames != null && !currentUploadFileNames.isEmpty()) {
+            // 기존 파일과 신규 파일 통합
+            uploadedFileNames.addAll(currentUploadFileNames);
+        }
+
+        productService.modify(productDTO);
+
+        List<String> oldFileNames = oldProductDTO.getUploadFileNames();
+        if (oldFileNames != null && !oldFileNames.isEmpty()) {
+            // 기존에 데이터베이스에 저장되어 있는 파일들 중 삭제될 파일 필터링
+            List<String> removeFiles =
+            oldFileNames.stream().filter(fileName -> uploadedFileNames.indexOf(fileName) == -1).collect(Collectors.toList());
+
+            fileUtil.deleteFiles(removeFiles);
+        }
+
+        return Map.of("RESULT","SUCCESS");
+    }
+
+    @DeleteMapping("/{pno}")
+    public Map<String, String> remove(@PathVariable Long pno) {
+
+        List<String> oldFileNames = productService.get(pno).getUploadFileNames();
+
+        productService.remove(pno);
+
+        fileUtil.deleteFiles(oldFileNames);
+
+        return Map.of("RESULT", "SUCCESS");
     }
 }

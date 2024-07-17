@@ -3,7 +3,8 @@ import { Navigate } from "react-router-dom";
 
 const Loading = <div>Loading...</div>;
 
-const ProductsList = lazy(() => import("../pages/products/ListPage"));
+const ProductList = lazy(() => import("../pages/products/ListPage"));
+const ProductAdd = lazy(() => import("../pages/products/AddPage"));
 
 const ProductsRouter = () => {
   return [
@@ -15,7 +16,15 @@ const ProductsRouter = () => {
       path: "list",
       element: (
         <Suspense fallback={Loading}>
-          <ProductsList />
+          <ProductList />
+        </Suspense>
+      ),
+    },
+    {
+      path: "add",
+      element: (
+        <Suspense fallback={Loading}>
+          <ProductAdd />
         </Suspense>
       ),
     },

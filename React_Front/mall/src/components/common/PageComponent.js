@@ -6,7 +6,7 @@ const PageComponent = ({ serverData, movePage }) => {
           className="m-2 p-2 w-16 text-center font-bold text-blue-400 "
           onClick={() => movePage({ page: serverData.prevPage })}
         >
-          Prev{" "}
+          Prev
         </div>
       ) : (
         <></>

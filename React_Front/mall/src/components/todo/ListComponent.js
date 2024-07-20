@@ -17,7 +17,7 @@ const initState = {
 };
 
 const ListComponent = () => {
-  const { page, size, moveToList, referesh, moveToRead } = useCustomMove();
+  const { page, size, moveToList, refresh, moveToRead } = useCustomMove();
   const [serverData, setServerData] = useState(initState);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const ListComponent = () => {
       console.log(data);
       setServerData(data);
     });
-  }, [page, size, referesh]);
+  }, [page, size, refresh]);
 
   return (
     <div className="border-2 border-blue-100 mt-10 mr-2 ml-2">

@@ -14,6 +14,7 @@
 - Lombok
 - queryDSL
 - thumbnailator:0.4.19
+- Spring Security
 
 ## 커리큘럼
 - 리액트(React) 개발 프로세스
@@ -83,8 +84,8 @@ public String print(LocalDate object, Locale locale) {
 - JPA가 컬랙션 객체임을 알 수 있게 한다.
 - 컬렉션 객체는 관계형 데이터베이스에 저장할 수 없기 때문에 컬렉션을 저장하기 위해 별도의 테이블을 만들어 컬렉션을 저장해야 한다.
 - int, String, Integer 등과 같은 엔티티가 아닌 값 타입, 임베디드 타입에 대한 테이블을 생성하고 1대 다 관계로 다룬다.
+- @ElementCollection(fetch = FetchType.LAZY) 컬렉션의 데이터는 실제로 접글할 때 까지 데이터베이스에서 로드되지 않는다.
 
 ### @ElementCollection과 @Embeddable의 동작
 - @ElementCollection은 @Embeddable 타입의 객체 목록을 엔티티의 필드로 정의할 때 사용된다.
 - 이 어노테이션은 JPA에게 List, Set, Map과 같은 컬렉션을 매핑하기 위한 방법을 지시한다.
-

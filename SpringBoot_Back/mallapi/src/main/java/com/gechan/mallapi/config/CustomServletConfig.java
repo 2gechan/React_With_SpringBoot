@@ -21,13 +21,13 @@ public class CustomServletConfig implements WebMvcConfigurer {
         registry.addFormatter(new LocalDateFormatter());
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        // 모든 경로에 cors 매핑
-        registry.addMapping("/**")
-                .maxAge(500) // preflight 요청 캐싱하는 시간
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
-                .allowedOrigins("*") // 모든 경로 허가
-                .allowedHeaders("Authorization", "Cache-Control", "Content-Type");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        // 모든 경로에 cors 매핑
+//        registry.addMapping("/**")
+//                .maxAge(500) // preflight 요청 캐싱하는 시간
+//                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
+//                .allowedOrigins("*") // 모든 경로 허가
+//                .allowedHeaders("Authorization", "Cache-Control", "Content-Type");
+//    }
 }

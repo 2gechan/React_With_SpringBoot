@@ -1,10 +1,13 @@
 package com.gechan.mallapi.config;
 
+import com.gechan.mallapi.security.handler.APILoginFailHandler;
+import com.gechan.mallapi.security.handler.APILoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,11 +32,18 @@ public class CustomSecurityConfig {
             httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource());
         });
 
+        // 세션 만들지 않는다는 설정
+        http.sessionManagement(httpSecuritySessionManagementConfigurer -> {
+            httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.NEVER);
+        });
+
         // csrf disabled
         http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
 
         http.formLogin(config -> {
             config.loginPage("/api/member/login");
+            config.successHandler(new APILoginSuccessHandler());
+            config.failureHandler(new APILoginFailHandler());
         });
 
         return http.build();

@@ -21,6 +21,11 @@ public class CustomSecurityConfig {
             httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource());
         });
 
+        // 세션 만들지 않는다는 설정
+        http.sessionManagement(httpSecuritySessionManagementConfigurer -> {
+            httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.NEVER);
+        });
+
         // csrf disabled
         http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
 

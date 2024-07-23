@@ -1,6 +1,7 @@
 package com.gechan.mallapi.security.handler;
 
 import com.gechan.mallapi.dto.MemberDTO;
+import com.gechan.mallapi.util.JWTUtil;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,9 +29,12 @@ public class APILoginSuccessHandler implements AuthenticationSuccessHandler {
         // 회원 정보 가져오기
         Map<String, Object> claims = memberDTO.getClaims();
 
+        String accessToken = JWTUtil.generateToken(claims, 10);
+        String refreshToken = JWTUtil.generateToken(claims, 60 * 24);
+
         // 인증 토큰 삽입
-        claims.put("accessToken", "");
-        claims.put("refreshToken", "");
+        claims.put("accessToken", accessToken);
+        claims.put("refreshToken", refreshToken);
 
         // json 타입으로 변환
         Gson gson = new Gson();

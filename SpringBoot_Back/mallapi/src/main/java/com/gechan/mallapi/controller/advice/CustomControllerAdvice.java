@@ -1,5 +1,6 @@
 package com.gechan.mallapi.controller.advice;
 
+import com.gechan.mallapi.util.CustomJWTException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -17,6 +18,12 @@ public class CustomControllerAdvice {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of("msg", e.getMessage()));
+    }
+
+    @ExceptionHandler(CustomJWTException.class)
+    protected ResponseEntity<?> handleJWTException(CustomJWTException e) {
+        String msg = e.getMessage();
+        return ResponseEntity.ok().body(Map.of("error", msg));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -9,6 +9,7 @@
 ### Front-End
 - react-router-dom
 - axios
+- @reduxjs/toolkit react-redux
 
 ### Back-End
 - Lombok

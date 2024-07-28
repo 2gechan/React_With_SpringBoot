@@ -5,14 +5,17 @@ const initState = {
 };
 
 const loginSlice = createSlice({
-  name: "loginSlice",
+  name: "loginslice",
   initialState: initState,
   reducers: {
-    login: () => {
-      console.log("login ........");
+    login: (state, action) => {
+      console.log("login ........", action);
+      console.log(action.payload);
+      return { email: action.payload.email };
     },
     logout: () => {
       console.log("logout ........");
+      return { ...initState };
     },
   },
 });

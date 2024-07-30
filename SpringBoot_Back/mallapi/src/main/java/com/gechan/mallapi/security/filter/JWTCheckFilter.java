@@ -28,21 +28,30 @@ public class JWTCheckFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
 
+        // Preflight요청은 체크하지 않음
+        if(request.getMethod().equals("OPTIONS")){
+            return true;
+        }
+
         String path = request.getRequestURI();
 
-        log.debug("==============================");
-        log.debug("Filter Check Path : " + path);
-        log.debug("==============================");
+        log.info("check uri.............." + path);
+
+        //api/member/ 경로의 호출은 체크하지 않음
+        if(path.startsWith("/api/member/")) {
+            return true;
+        }
+
+        //이미지 조회 경로는 체크하지 않는다면
+        if(path.startsWith("/api/products/view/")) {
+            return true;
+        }
 
         return false;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
-        log.debug("===========================");
-
-        log.debug("===========================");
 
         log.debug("===========================");
 

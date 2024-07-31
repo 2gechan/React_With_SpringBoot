@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { login, loginPostAsync } from "../../slices/loginSlice";
+import useCustomLogin from "../../hooks/useCustomLogin";
 
 const initState = {
   email: "",
@@ -10,7 +9,7 @@ const initState = {
 const LoginComponent = () => {
   const [loginParam, setLoginParam] = useState({ ...initState });
 
-  const dispatch = useDispatch();
+  const { doLogin, moveToPath } = useCustomLogin();
 
   const handleChange = (e) => {
     loginParam[e.target.name] = e.target.value;
@@ -19,8 +18,26 @@ const LoginComponent = () => {
   };
 
   const handleClickLogin = () => {
-    // dispatch(login(loginParam));
-    dispatch(loginPostAsync(loginParam));
+    doLogin(loginParam).then((data) => {
+      if (data.error) {
+        alert("이메일과 패스워드를 확인해 주세요");
+      } else {
+        moveToPath("/");
+      }
+    });
+
+    // dispatch(loginPostAsync(loginParam))
+    //   // 비동기 방식을 호출했지만 동기화한것처럼 볼 수 있다
+    //   .unwrap()
+    //   .then((data) => {
+    //     if (data.error) {
+    //       alert("이메일과 패스워드를 확인해 주세요");
+    //     } else {
+    //       alert("로그인 성공");
+
+    //       moveToPath("/");
+    //     }
+    //   });
   };
 
   return (

@@ -1,8 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginPost } from "../api/memberApi";
+import { getCookie, removeCookie, setCookie } from "../util/cokkieUtil";
 
 const initState = {
   email: "",
+};
+
+const loadMemberCookie = () => {
+  const memberInfo = getCookie("member");
+
+  return memberInfo;
 };
 
 // 비동기 작업을 생성하고 이를 redux 액션으로 처리할 수 있도록 도와주는 유틸리티
@@ -12,7 +19,7 @@ export const loginPostAsync = createAsyncThunk("loginPostAsync", (param) =>
 
 const loginSlice = createSlice({
   name: "loginslice",
-  initialState: initState,
+  initialState: loadMemberCookie() || initState,
   reducers: {
     login: (state, action) => {
       console.log("login ........", action);
@@ -21,6 +28,8 @@ const loginSlice = createSlice({
     },
     logout: () => {
       console.log("logout ........");
+
+      removeCookie("member");
       return { ...initState };
     },
   },
@@ -31,6 +40,12 @@ const loginSlice = createSlice({
         console.log("login success");
 
         const payload = action.payload;
+
+        console.log(payload);
+
+        if (!payload.error) {
+          setCookie("member", JSON.stringify(payload));
+        }
 
         return payload;
       })

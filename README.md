@@ -10,6 +10,7 @@
 - react-router-dom
 - axios
 - @reduxjs/toolkit react-redux
+- react-cookie
 
 ### Back-End
 - Lombok

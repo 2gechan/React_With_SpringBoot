@@ -1,5 +1,4 @@
 import { lazy, Suspense } from "react";
-import ModifyPage from "../pages/member/ModifyPage";
 
 const Loading = <div>Loading....</div>;
 const Login = lazy(() => import("../pages/member/LoginPage"));
@@ -40,7 +39,7 @@ const memberRouter = () => {
       path: "modify",
       element: (
         <Suspense fallback={Loading}>
-          <ModifyPage />
+          <MemberModify />
         </Suspense>
       ),
     },

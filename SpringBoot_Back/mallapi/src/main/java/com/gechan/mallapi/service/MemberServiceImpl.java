@@ -3,6 +3,7 @@ package com.gechan.mallapi.service;
 import com.gechan.mallapi.domain.Member;
 import com.gechan.mallapi.domain.MemberRole;
 import com.gechan.mallapi.dto.MemberDTO;
+import com.gechan.mallapi.dto.MemberModifyDTO;
 import com.gechan.mallapi.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -49,6 +50,20 @@ public class MemberServiceImpl implements MemberService {
         MemberDTO memberDTO = entityToDTO(socialMember);
 
         return memberDTO;
+    }
+
+    @Override
+    public void modifyMember(MemberModifyDTO memberModifyDTO) {
+
+        Optional<Member> result = memberRepository.findById(memberModifyDTO.getEmail());
+
+        Member member = result.orElseThrow();
+
+        member.changeNickname(memberModifyDTO.getNickname());
+        member.changeSocial(false);
+        member.changePw(passwordEncoder.encode(memberModifyDTO.getPw()));
+
+        memberRepository.save(member);
     }
 
     private Member makeSocialMember(String email) {

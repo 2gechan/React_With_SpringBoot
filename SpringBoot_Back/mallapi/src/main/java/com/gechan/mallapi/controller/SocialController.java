@@ -1,11 +1,14 @@
 package com.gechan.mallapi.controller;
 
 import com.gechan.mallapi.dto.MemberDTO;
+import com.gechan.mallapi.dto.MemberModifyDTO;
 import com.gechan.mallapi.service.MemberService;
 import com.gechan.mallapi.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -31,5 +34,12 @@ public class SocialController {
         claims.put("accessToken", jwtAccessToken);
         claims.put("refreshToken", jwtRefreshToken);
         return claims;
+    }
+
+    @PutMapping("/api/member/modify")
+    public Map<String, String> modify(@RequestBody MemberModifyDTO memberModifyDTO) {
+        memberService.modifyMember(memberModifyDTO);
+
+        return Map.of(memberModifyDTO.getEmail(), memberModifyDTO.getPw());
     }
 }
